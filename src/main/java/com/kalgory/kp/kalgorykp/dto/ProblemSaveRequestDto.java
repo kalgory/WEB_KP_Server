@@ -13,18 +13,22 @@ public class ProblemSaveRequestDto {
 
     private ProblemLevel level;
     private ProblemLanguage language;
+    private String name;
 
     @Builder
     public ProblemSaveRequestDto(ProblemLevel level,
-                                 ProblemLanguage language) {
+                                 ProblemLanguage language,
+                                 String name) {
         this.level = level;
         this.language = language;
+        this.name = name;
     }
 
     public Problem toEntity() {
         return Problem.builder()
                 .level(level)
                 .language(language)
+                .name(name)
                 .build();
     }
 }
