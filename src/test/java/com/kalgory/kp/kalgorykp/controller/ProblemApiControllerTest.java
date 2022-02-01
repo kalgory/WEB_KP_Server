@@ -1,8 +1,10 @@
 package com.kalgory.kp.kalgorykp.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kalgory.kp.kalgorykp.domain.problem.*;
 import com.kalgory.kp.kalgorykp.dto.ProblemSaveRequestDto;
+import com.kalgory.kp.kalgorykp.entity.problem.Problem;
+import com.kalgory.kp.kalgorykp.entity.problem.ProblemLanguage;
+import com.kalgory.kp.kalgorykp.entity.problem.ProblemLevel;
 import com.kalgory.kp.kalgorykp.repository.ProblemRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

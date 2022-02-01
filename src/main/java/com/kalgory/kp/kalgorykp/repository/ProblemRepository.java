@@ -1,6 +1,6 @@
 package com.kalgory.kp.kalgorykp.repository;
 
-import com.kalgory.kp.kalgorykp.domain.problem.Problem;
+import com.kalgory.kp.kalgorykp.entity.problem.Problem;
 import com.kalgory.kp.kalgorykp.dto.ProblemListResponseDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

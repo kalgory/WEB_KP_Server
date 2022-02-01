@@ -1,6 +1,8 @@
 package com.kalgory.kp.kalgorykp.dto;
 
-import com.kalgory.kp.kalgorykp.domain.problem.*;
+import com.kalgory.kp.kalgorykp.entity.problem.Problem;
+import com.kalgory.kp.kalgorykp.entity.problem.ProblemLanguage;
+import com.kalgory.kp.kalgorykp.entity.problem.ProblemLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
