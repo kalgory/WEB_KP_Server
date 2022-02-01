@@ -28,4 +28,9 @@ public class Problem {
     @Convert(converter = ProblemLanguageConverter.class)
     private ProblemLanguage language;
 
+    @Column(nullable = false)
+    private String name;
+
+    @Column(columnDefinition = "int default 0")
+    private int finished_count;
 }

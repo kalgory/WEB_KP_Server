@@ -57,12 +57,14 @@ class ProblemApiControllerTest {
     @DisplayName("Save Challenge Test")
     void save() throws Exception {
         //given
-        String level = "LEVEL_1";
+        int level = 3;
         String language = "JAVA";
+        String name = "테스트";
 
         ProblemSaveRequestDto requestDto = ProblemSaveRequestDto.builder()
-                .level(ProblemLevel.valueOf(level))
+                .level(ProblemLevel.values()[level])
                 .language(ProblemLanguage.valueOf(language))
+                .name(name)
                 .build();
 
         String url = "http://localhost:" + port + "/problems";
@@ -73,19 +75,22 @@ class ProblemApiControllerTest {
                 .andExpect(status().isOk());
         //then
         List<Problem> all = problemRepository.findAll();
-        assertThat(all.get(0).getLevel().getCode()).isEqualTo(level);
+        assertThat(all.get(0).getLevel().ordinal()).isEqualTo(level);
         assertThat(all.get(0).getLanguage().getCode()).isEqualTo(language);
+        assertThat(all.get(0).getName()).isEqualTo(name);
     }
 
     @Test
-    void findAllChallenge() throws Exception {
+    void findAllProblem() throws Exception {
         //given
-        String level = "LEVEL_1";
+        int level = 1;
         String language = "CPP";
+        String name = "테스트";
 
         Problem problem = Problem.builder()
-                .level(ProblemLevel.valueOf(level))
+                .level(ProblemLevel.values()[level])
                 .language(ProblemLanguage.valueOf(language))
+                .name(name)
                 .build();
 
         problemRepository.save(problem);
@@ -95,7 +100,8 @@ class ProblemApiControllerTest {
         //then
         mvc.perform(get(url))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].level", is("Level 1")))
-                .andExpect(jsonPath("$[0].language", is("C++")));
+                .andExpect(jsonPath("$[0].level", is(level)))
+                .andExpect(jsonPath("$[0].language", is("C++")))
+                .andExpect(jsonPath("$[0].name", is(name)));
     }
 }
