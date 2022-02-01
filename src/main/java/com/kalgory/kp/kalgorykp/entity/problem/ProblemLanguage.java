@@ -1,4 +1,4 @@
-package com.kalgory.kp.kalgorykp.domain.problem;
+package com.kalgory.kp.kalgorykp.entity.problem;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

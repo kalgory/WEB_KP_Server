@@ -1,6 +1,6 @@
 package com.kalgory.kp.kalgorykp.dto;
 
-import com.kalgory.kp.kalgorykp.domain.problem.*;
+import com.kalgory.kp.kalgorykp.entity.problem.Problem;
 import lombok.Getter;
 
 @Getter
