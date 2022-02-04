@@ -16,7 +16,7 @@ public class ProblemApiController {
 
     @GetMapping("/problems")
     public List<ProblemListResponseDto> findAllChallenge(){
-        return problemService.findAllAsc();
+        return problemService.findMockData();
     }
 
     @PostMapping("/problems")
