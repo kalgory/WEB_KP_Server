@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.Matchers.is;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -38,7 +39,7 @@ class ProblemApiControllerTest {
     private MockMvc mvc;
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
         mvc = MockMvcBuilders
                 .webAppContextSetup(context)
                 .build();
@@ -54,12 +55,14 @@ class ProblemApiControllerTest {
     void save() throws Exception {
         //given
         int level = 3;
-        String language = "JAVA";
+        List<String> languages = List.of("JAVA", "CPP");
         String name = "테스트";
 
         ProblemSaveRequestDto requestDto = ProblemSaveRequestDto.builder()
                 .level(ProblemLevel.values()[level])
-                .language(ProblemLanguage.valueOf(language))
+                .languages(languages.stream()
+                        .map(ProblemLanguage::valueOf)
+                        .collect(Collectors.toList()))
                 .name(name)
                 .build();
 
@@ -72,7 +75,10 @@ class ProblemApiControllerTest {
         //then
         List<Problem> all = problemRepository.findAll();
         assertThat(all.get(0).getLevel().ordinal()).isEqualTo(level);
-        assertThat(all.get(0).getLanguage().getCode()).isEqualTo(language);
+        assertThat(all.get(0).getLanguages().stream()
+                .map(ProblemLanguage::getCode)
+                .collect(Collectors.toList()))
+                .isEqualTo(languages);
         assertThat(all.get(0).getName()).isEqualTo(name);
     }
 
@@ -80,12 +86,14 @@ class ProblemApiControllerTest {
     void findAllProblem() throws Exception {
         //given
         int level = 1;
-        String language = "CPP";
+        List<String> languages = List.of("JAVA", "CPP");
         String name = "테스트";
 
         Problem problem = Problem.builder()
                 .level(ProblemLevel.values()[level])
-                .language(ProblemLanguage.valueOf(language))
+                .languages(languages.stream()
+                        .map(ProblemLanguage::valueOf)
+                        .collect(Collectors.toList()))
                 .name(name)
                 .build();
 
@@ -97,7 +105,7 @@ class ProblemApiControllerTest {
         mvc.perform(get(url))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].level", is(level)))
-                .andExpect(jsonPath("$[0].language", is("C++")))
+                .andExpect(jsonPath("$[0].languages", is(languages)))
                 .andExpect(jsonPath("$[0].name", is(name)));
     }
 }

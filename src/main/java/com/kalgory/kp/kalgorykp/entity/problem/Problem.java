@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Builder
@@ -27,7 +28,7 @@ public class Problem {
 
     @Column(nullable = false)
     @Convert(converter = ProblemLanguageConverter.class)
-    private ProblemLanguage language;
+    private List<ProblemLanguage> languages;
 
     @Column(nullable = false)
     private String name;
