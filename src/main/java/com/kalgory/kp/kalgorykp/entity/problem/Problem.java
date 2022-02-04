@@ -1,5 +1,6 @@
 package com.kalgory.kp.kalgorykp.entity.problem;
 
+import com.kalgory.kp.kalgorykp.entity.problem.enums.*;
 import com.kalgory.kp.kalgorykp.converter.ProblemLanguageConverter;
 import com.kalgory.kp.kalgorykp.converter.ProblemLevelConverter;
 import lombok.AllArgsConstructor;
