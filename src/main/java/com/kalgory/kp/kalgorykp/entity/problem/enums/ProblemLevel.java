@@ -1,4 +1,4 @@
-package com.kalgory.kp.kalgorykp.entity.problem;
+package com.kalgory.kp.kalgorykp.entity.problem.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

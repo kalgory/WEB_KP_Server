@@ -1,6 +1,6 @@
 package com.kalgory.kp.kalgorykp.converter;
 
-import com.kalgory.kp.kalgorykp.entity.problem.ProblemLevel;
+import com.kalgory.kp.kalgorykp.entity.problem.enums.ProblemLevel;
 
 import javax.persistence.AttributeConverter;
 import java.util.Arrays;

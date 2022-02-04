@@ -1,15 +1,11 @@
 package com.kalgory.kp.kalgorykp.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kalgory.kp.kalgorykp.entity.problem.enums.*;
 import com.kalgory.kp.kalgorykp.dto.ProblemSaveRequestDto;
-import com.kalgory.kp.kalgorykp.entity.problem.Problem;
-import com.kalgory.kp.kalgorykp.entity.problem.ProblemLanguage;
-import com.kalgory.kp.kalgorykp.entity.problem.ProblemLevel;
+import com.kalgory.kp.kalgorykp.entity.problem.*;
 import com.kalgory.kp.kalgorykp.repository.ProblemRepository;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
