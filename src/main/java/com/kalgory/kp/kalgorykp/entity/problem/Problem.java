@@ -1,16 +1,24 @@
 package com.kalgory.kp.kalgorykp.entity.problem;
 
-import com.kalgory.kp.kalgorykp.entity.problem.enums.*;
 import com.kalgory.kp.kalgorykp.converter.ProblemLanguageConverter;
 import com.kalgory.kp.kalgorykp.converter.ProblemLevelConverter;
+import com.kalgory.kp.kalgorykp.entity.problem.enums.ProblemLanguage;
+import com.kalgory.kp.kalgorykp.entity.problem.enums.ProblemLevel;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.List;
-
+/**
+ * Problem Domain Entity Class.
+ */
 @Getter
 @Builder
 @NoArgsConstructor
@@ -18,21 +26,21 @@ import java.util.List;
 @Entity(name = "Problem")
 public class Problem {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column(nullable = false)
-    @Convert(converter = ProblemLevelConverter.class)
-    private ProblemLevel level;
+  @Column(nullable = false)
+  @Convert(converter = ProblemLevelConverter.class)
+  private ProblemLevel level;
 
-    @Column(nullable = false)
-    @Convert(converter = ProblemLanguageConverter.class)
-    private List<ProblemLanguage> languages;
+  @Column(nullable = false)
+  @Convert(converter = ProblemLanguageConverter.class)
+  private List<ProblemLanguage> languages;
 
-    @Column(nullable = false)
-    private String name;
+  @Column(nullable = false)
+  private String name;
 
-    @Column(columnDefinition = "int default 0")
-    private int finished_count;
+  @Column(columnDefinition = "int default 0")
+  private int finishedCount;
 }
