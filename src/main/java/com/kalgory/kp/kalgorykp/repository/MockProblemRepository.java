@@ -40,7 +40,7 @@ public class MockProblemRepository {
             .id((Long) problem.get("id"))
             .level(((Long) problem.get("level")).intValue())
             .languages(languages)
-            .finished_count(((Long) problem.get("finished_count")).intValue())
+            .finishedCount(((Long) problem.get("finished_count")).intValue())
             .name((String) problem.get("name"))
             .build());
       });

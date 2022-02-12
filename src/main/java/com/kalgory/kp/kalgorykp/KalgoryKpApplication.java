@@ -12,7 +12,7 @@ public class KalgoryKpApplication {
   /**
    * entry point main function.
    *
-   * @param args Process 인자
+   * @param args Process 인자.
    */
   public static void main(String[] args) {
     SpringApplication.run(KalgoryKpApplication.class, args);
