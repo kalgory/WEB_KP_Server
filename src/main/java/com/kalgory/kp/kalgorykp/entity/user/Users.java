@@ -1,6 +1,7 @@
 package com.kalgory.kp.kalgorykp.entity.user;
 
 import com.kalgory.kp.kalgorykp.dto.UserSignUpRequestDto;
+import javax.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -26,7 +27,8 @@ public class Users {
 
   private String profileImage;
 
-  private String userId;
+  @Email
+  private String email;
 
   private String username;
 
@@ -41,7 +43,7 @@ public class Users {
     return Users.builder()
         .password(encodedPassword)
         .profileImage(userSignUpRequestDto.getProfileImage())
-        .userId(userSignUpRequestDto.getUserId())
+        .email(userSignUpRequestDto.getEmail())
         .username(userSignUpRequestDto.getUsername())
         .build();
   }

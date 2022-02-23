@@ -12,7 +12,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class UserSignUpRequestDto {
 
-  private String userId;
+  private String email;
   private String password;
   private String username;
   private String profileImage;

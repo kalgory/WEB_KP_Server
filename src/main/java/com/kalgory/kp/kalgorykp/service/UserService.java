@@ -25,9 +25,9 @@ public class UserService {
    * @param userSignUpRequestDto 회원가입 시 요청한 데이터 DTO
    */
   public void signUp(UserSignUpRequestDto userSignUpRequestDto) {
-    String userId = userSignUpRequestDto.getUserId();
+    String email = userSignUpRequestDto.getEmail();
     // TODO: 글로벌 예외 처리
-    if (usersRepository.existsByUserId(userId)) {
+    if (usersRepository.existsByEmail(email)) {
       throw new IllegalStateException("이미 존재하는 유저입니다.");
     }
     String encodedPassword = passwordEncoder.encode(userSignUpRequestDto.getPassword());
