@@ -17,7 +17,7 @@ public class UserController {
 
   private final UserService userService;
 
-  @PostMapping("/signup")
+  @PostMapping("/sign-up")
   @ResponseStatus(HttpStatus.CREATED)
   public void registerUser(UserSignUpRequestDto userSignUpRequestDto) {
     userService.signUp(userSignUpRequestDto);
