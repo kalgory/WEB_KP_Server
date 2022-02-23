@@ -1,11 +1,8 @@
 package com.kalgory.kp.kalgorykp.controller;
 
-import com.kalgory.kp.kalgorykp.dto.ProblemListResponseDto;
 import com.kalgory.kp.kalgorykp.dto.ProblemSaveRequestDto;
 import com.kalgory.kp.kalgorykp.service.ProblemService;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,16 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProblemApiController {
 
   private final ProblemService problemService;
-
-  /**
-   * Challenge 관련 모든 문제 리스트 GET API.
-   *
-   * @return 조건에 맞는 문제 리스트.
-   */
-  @GetMapping("/problems")
-  public List<ProblemListResponseDto> findAllChallenge() {
-    return problemService.findMockData();
-  }
 
   /**
    * 문제 저장 POST API.
