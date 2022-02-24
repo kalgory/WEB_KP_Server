@@ -2,6 +2,8 @@ package com.kalgory.kp.api.service;
 
 import com.kalgory.kp.api.dto.UserSignUpRequestDto;
 import com.kalgory.kp.api.entity.user.Users;
+import com.kalgory.kp.api.exception.CustomException;
+import com.kalgory.kp.api.exception.ErrorCode;
 import com.kalgory.kp.api.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,9 +28,9 @@ public class UserService {
    */
   public void signUp(UserSignUpRequestDto userSignUpRequestDto) {
     String email = userSignUpRequestDto.getEmail();
-    // TODO: 글로벌 예외 처리
+
     if (usersRepository.existsByEmail(email)) {
-      throw new IllegalStateException("이미 존재하는 유저입니다.");
+      throw new CustomException(ErrorCode.DUPLICATED_EMAIL);
     }
     String encodedPassword = passwordEncoder.encode(userSignUpRequestDto.getPassword());
     Users user = Users.of(userSignUpRequestDto, encodedPassword);
