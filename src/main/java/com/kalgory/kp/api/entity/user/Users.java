@@ -11,7 +11,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
- * users 컬렉션에 대응하는 document 클래스.
+ * Users Domain Document Class.
  */
 @Getter
 @Builder

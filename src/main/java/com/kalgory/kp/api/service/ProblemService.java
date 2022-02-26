@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
- * 알고리즘 문제 관련 Service Layer.
+ * 알고리즘 문제 관련 서비스 클래스.
  */
 @RequiredArgsConstructor
 @Service
