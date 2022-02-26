@@ -1,13 +1,11 @@
 package com.kalgory.kp.api.repository;
 
-import com.kalgory.kp.api.entity.problem.Problem;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import com.kalgory.kp.api.entity.problem.Problems;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
- * Spring Data JPA 와 DI 를 활용하기 위한 문제 repository interface.
+ * Mongo DB의 problems 컬렉션과 연결하는 Repository.
  */
-public interface ProblemRepository extends JpaRepository<Problem, Long>,
-    JpaSpecificationExecutor<Problem> {
+public interface ProblemRepository extends MongoRepository<Problems, Long> {
 
 }
