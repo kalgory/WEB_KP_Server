@@ -15,7 +15,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 /**
- * 스프링 시큐리티 설정 파일.
+ * 스프링 시큐리티 설정.
  */
 @Configuration
 @EnableWebSecurity

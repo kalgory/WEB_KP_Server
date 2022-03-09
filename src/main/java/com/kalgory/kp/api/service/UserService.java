@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
- * 유저와 관련된 로직을 처리하는 서비스.
+ * 유저 관련 서비스 클래스.
  */
 @Service
 public class UserService {
