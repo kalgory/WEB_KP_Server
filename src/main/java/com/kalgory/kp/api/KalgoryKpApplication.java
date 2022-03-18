@@ -2,11 +2,13 @@ package com.kalgory.kp.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 /**
  * Spring Boot Application 실행.
  */
 @SpringBootApplication
+@EnableRedisHttpSession
 public class KalgoryKpApplication {
 
   /**
