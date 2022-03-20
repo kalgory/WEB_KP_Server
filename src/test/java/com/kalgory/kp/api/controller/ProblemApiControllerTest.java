@@ -1,8 +1,9 @@
 package com.kalgory.kp.api.controller;
 
+import com.kalgory.kp.api.entity.problem.Limit;
 import com.kalgory.kp.api.entity.problem.Problems;
+import com.kalgory.kp.api.entity.problem.Testcase;
 import com.kalgory.kp.api.entity.problem.enums.ProblemLanguage;
-import com.kalgory.kp.api.entity.problem.enums.ProblemLevel;
 import com.kalgory.kp.api.repository.ProblemRepository;
 import org.junit.After;
 import org.junit.Before;
@@ -51,24 +52,29 @@ public class ProblemAPiControllerTest {
 
   @After
   public void tearDown() throws Exception {
-    problemRepository.deleteAll();
+    problemRepository.deleteTopByOrderByIdDesc();
   }
 
   @Test
   @DisplayName("문제를 요청한다")
   public void requestProblem() throws Exception {
     //given
-    ProblemLevel level = ProblemLevel.LEVEL_1;
+    String content = "테스트 문단";
     List<ProblemLanguage> languages = new ArrayList<ProblemLanguage>();
     languages.add(ProblemLanguage.C);
-    String name = "Test";
-    int finishedCount = 3;
+    int level = 1;
+    String title = "Test";
+    List<Testcase> testCases = new ArrayList<Testcase>();
+    testCases.add(Testcase.builder().input("1+1").output("2").build());
+    Limit limit = Limit.builder().time(1).memory(512).build();
 
     problemRepository.save(Problems.builder()
+        .content(content)
         .level(level)
         .languages(languages)
-        .name(name)
-        .finishedCount(finishedCount)
+        .title(title)
+        .testcases(testCases)
+        .limit(limit)
         .build());
 
     String url = "http://localhost:" + port + "/problems";
@@ -77,8 +83,12 @@ public class ProblemAPiControllerTest {
     mvc.perform(get(url))
         //then
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$.name", is(name)))
-        .andExpect(jsonPath("$.level", is(level.getValue())))
-        .andExpect(jsonPath("$.finishedCount", is(finishedCount)));
+        .andExpect(jsonPath("$.title", is(title)))
+        .andExpect(jsonPath("$.level", is(level)))
+        .andExpect(jsonPath("$.content", is(content)))
+        .andExpect(jsonPath("$.testcases[0].input").exists())
+        .andExpect(jsonPath("$.testcases[0].output").exists())
+        .andExpect(jsonPath("$.limit.time").exists())
+        .andExpect(jsonPath("$.limit.memory").exists());
   }
 }
