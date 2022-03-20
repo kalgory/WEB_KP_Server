@@ -1,7 +1,6 @@
 package com.kalgory.kp.api.entity.problem;
 
 import com.kalgory.kp.api.entity.problem.enums.ProblemLanguage;
-import com.kalgory.kp.api.entity.problem.enums.ProblemLevel;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
+import javax.persistence.Embedded;
 
 /**
  * Problems Domain Document Class.
@@ -23,18 +23,26 @@ public class Problems {
   @MongoId
   private String id;
 
-  private ProblemLevel level;
+  private String content;
 
   private List<ProblemLanguage> languages;
 
-  private String name;
+  private int level;
 
-  private int finishedCount;
+  private String title;
 
-  public Problems(ProblemLevel level, List<ProblemLanguage> languages, String name, int finishedCount) {
-    this.level = level;
+  @Embedded
+  private List<Testcase> testcases;
+
+  @Embedded
+  private Limit limit;
+
+  public Problems(String content, List<ProblemLanguage> languages, int level, String title, List<Testcase> testcases, Limit limit) {
+    this.content = content;
     this.languages = languages;
-    this.name = name;
-    this.finishedCount = finishedCount;
+    this.level = level;
+    this.title = title;
+    this.testcases = testcases;
+    this.limit = limit;
   }
 }
