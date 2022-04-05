@@ -4,6 +4,7 @@ import com.kalgory.kp.api.exception.CustomException;
 import com.kalgory.kp.api.exception.ErrorCode;
 import com.kalgory.kp.api.redis.repository.UserRepository;
 import java.util.Arrays;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +37,11 @@ public class SessionInterceptor implements HandlerInterceptor {
   }
 
   private String getSession(HttpServletRequest request) {
-    return Arrays.stream(request.getCookies())
+    Cookie[] cookies = request.getCookies();
+    if (cookies == null) {
+      throw new CustomException(ErrorCode.NO_COOKIES);
+    }
+    return Arrays.stream(cookies)
         .filter(cookie -> cookie.getName().equals(SESSION))
         .findFirst().orElseThrow().getValue();
   }
