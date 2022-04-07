@@ -25,8 +25,8 @@ public class ProblemService {
     return new ProblemReceiveResponseDto(problems);
   }
 
-  public void submit(ProblemSubmitRequestDto problemSubmitRequestDto) {
-    // 채점 서버 요청
+  public String submit(ProblemSubmitRequestDto problemSubmitRequestDto) {
+    return "Success";
   }
 
 }

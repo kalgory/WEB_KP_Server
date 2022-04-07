@@ -5,6 +5,7 @@ import com.kalgory.kp.api.dto.ProblemSubmitRequestDto;
 import com.kalgory.kp.api.service.ProblemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +29,8 @@ public class ProblemController {
 
   @PostMapping("/problems/submit")
   @ResponseStatus(HttpStatus.ACCEPTED)
-  public void submitProblem(@RequestBody ProblemSubmitRequestDto problemSubmitRequestDto){
-    problemService.submit(problemSubmitRequestDto);
+  public ResponseEntity<String> submitProblem(@RequestBody ProblemSubmitRequestDto problemSubmitRequestDto){
+    String result = problemService.submit(problemSubmitRequestDto);
+    return ResponseEntity.ok(result);
   }
 }
