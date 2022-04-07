@@ -22,15 +22,14 @@ public class ProblemController {
   private final ProblemService problemService;
 
   @GetMapping("/problems")
-  @ResponseStatus(HttpStatus.OK)
-  public ProblemReceiveResponseDto receiveProblem(){
-    return problemService.receive();
+  public ResponseEntity<ProblemReceiveResponseDto> receiveProblem(){
+    ProblemReceiveResponseDto receive = problemService.receive();
+    return ResponseEntity.ok(receive);
   }
 
   @PostMapping("/problems/submit")
-  @ResponseStatus(HttpStatus.ACCEPTED)
   public ResponseEntity<String> submitProblem(@RequestBody ProblemSubmitRequestDto problemSubmitRequestDto){
     String result = problemService.submit(problemSubmitRequestDto);
-    return ResponseEntity.ok(result);
+    return ResponseEntity.accepted().body(result);
   }
 }
