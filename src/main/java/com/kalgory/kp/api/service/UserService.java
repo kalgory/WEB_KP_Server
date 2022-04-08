@@ -28,7 +28,8 @@ public class UserService {
     String email = userSignUpRequestDto.getEmail();
     validateEmail(email);
 
-    Users user = getUserFrom(userSignUpRequestDto);
+    Users user = Users.of(userSignUpRequestDto,
+        passwordEncoder.encode(userSignUpRequestDto.getPassword()));
     usersRepository.save(user);
   }
 
@@ -36,10 +37,5 @@ public class UserService {
     if (usersRepository.existsByEmail(email)) {
       throw new CustomException(ErrorCode.DUPLICATED_EMAIL);
     }
-  }
-
-  private Users getUserFrom(UserSignUpRequestDto userSignUpRequestDto) {
-    String encodedPassword = passwordEncoder.encode(userSignUpRequestDto.getPassword());
-    return Users.of(userSignUpRequestDto, encodedPassword);
   }
 }
